@@ -1,0 +1,770 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d18">
+  <title>Faiz Malik Akbar | Personal Portfolio</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap');
+
+    :root {
+      --bg: #080d18;
+      --panel: rgba(17, 27, 46, .78);
+      --cyan: #4de8ff;
+      --purple: #9c7bff;
+      --text: #edf5ff;
+      --muted: #98a8c1;
+      --border: rgba(113, 166, 220, .18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, sans-serif;
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse at 15% 15%, #193d6740, transparent 42%),
+        radial-gradient(ellipse at 85% 45%, #563a7c26, transparent 40%),
+        linear-gradient(#080d18, #0a1020);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 13, 24, .85);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(18px);
+    }
+
+    nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-family: Orbitron, sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .logo span {
+      color: var(--cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: .88rem;
+      transition: .25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan);
+    }
+
+    .menu-toggle {
+      display: none;
+      color: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 7px 12px;
+      background: #101a2a;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+
+    .hero {
+      min-height: 640px;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      align-items: center;
+      gap: 50px;
+      padding-top: 75px;
+      padding-bottom: 75px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--cyan);
+      border: 1px solid #4de8ff40;
+      background: #4de8ff0b;
+      border-radius: 30px;
+      padding: 7px 14px;
+      font-size: .76rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 12px var(--cyan);
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 6vw, 4.9rem);
+      line-height: 1.12;
+      letter-spacing: -2px;
+      margin: 24px 0;
+    }
+
+    h1 span {
+      display: block;
+      color: var(--cyan);
+      text-shadow: 0 0 35px #4de8ff26;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 590px;
+      font-size: 1rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border-radius: 11px;
+      padding: 12px 19px;
+      font-weight: 700;
+      font-size: .88rem;
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-primary {
+      color: #07121c;
+      background: linear-gradient(110deg, var(--cyan), #8bdbff);
+      box-shadow: 0 8px 28px #4de8ff20;
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      background: #ffffff05;
+    }
+
+    .profile-visual {
+      position: relative;
+      min-height: 390px;
+      display: grid;
+      place-items: center;
+    }
+
+    .orbit {
+      position: absolute;
+      width: min(340px, 90%);
+      aspect-ratio: 1;
+      border: 1px solid #4de8ff3b;
+      border-radius: 50%;
+      animation: rotate 18s linear infinite;
+    }
+
+    .orbit::before,
+    .orbit::after {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: var(--cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 22px var(--cyan);
+    }
+
+    .orbit::before {
+      top: 35px;
+      left: 45px;
+    }
+
+    .orbit::after {
+      bottom: 38px;
+      right: 20px;
+      background: var(--purple);
+      box-shadow: 0 0 22px var(--purple);
+    }
+
+    @keyframes rotate {
+      to { transform: rotate(360deg); }
+    }
+
+    .avatar {
+      width: 230px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      position: relative;
+      border-radius: 32px;
+      transform: rotate(-4deg);
+      background:
+        linear-gradient(140deg, #152b46, #101425 65%, #33234d);
+      border: 1px solid #4de8ff65;
+      box-shadow: 0 0 70px #4de8ff14, inset 0 0 40px #4de8ff0c;
+    }
+
+    .avatar-inner {
+      text-align: center;
+      transform: rotate(4deg);
+    }
+
+    .avatar-symbol {
+      font-family: Orbitron, sans-serif;
+      font-size: 4rem;
+      font-weight: 800;
+      line-height: 1.3;
+      color: var(--cyan);
+      text-shadow: 0 0 30px #4de8ff50;
+    }
+
+    .avatar-inner small {
+      display: block;
+      color: var(--muted);
+      letter-spacing: 3px;
+      font-size: .7rem;
+    }
+
+    .float-tag {
+      position: absolute;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      background: #111b2ddd;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      font-size: .78rem;
+      box-shadow: 0 10px 30px #0003;
+    }
+
+    .tag-one { top: 55px; right: 0; }
+    .tag-two { bottom: 48px; left: 0; }
+
+    section {
+      padding: 85px 0;
+      scroll-margin-top: 70px;
+    }
+
+    .section-head {
+      margin-bottom: 35px;
+    }
+
+    .section-head .label {
+      color: var(--cyan);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+      margin-top: 7px;
+      line-height: 1.25;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      margin-top: 10px;
+      max-width: 650px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      padding: 27px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      transition: .3s;
+    }
+
+    .card:hover {
+      border-color: #4de8ff75;
+      transform: translateY(-4px);
+      box-shadow: 0 18px 45px #0002;
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: #4de8ff12;
+      border: 1px solid #4de8ff25;
+      font-size: 1.4rem;
+      margin-bottom: 19px;
+    }
+
+    .card h3 {
+      font-size: 1.13rem;
+      margin-bottom: 9px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .info-list {
+      margin-top: 12px;
+    }
+
+    .info-row {
+      display: flex;
+      gap: 15px;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #ffffff0d;
+      font-size: .9rem;
+    }
+
+    .info-row:last-child {
+      border-bottom: 0;
+    }
+
+    .info-row span:first-child {
+      color: var(--muted);
+    }
+
+    .info-row span:last-child {
+      text-align: right;
+      font-weight: 600;
+    }
+
+    .achievement {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .achievement::after {
+      content: "";
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: #4de8ff0b;
+      right: -60px;
+      bottom: -70px;
+    }
+
+    .year {
+      color: var(--cyan);
+      font-family: Orbitron, sans-serif;
+      font-size: .8rem;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .writer-box {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #9c7bff50;
+      background:
+        radial-gradient(ellipse at 90% 10%, #9c7bff20, transparent 40%),
+        linear-gradient(130deg, #15152b, #101a2a);
+      border-radius: 24px;
+      padding: clamp(28px, 6vw, 55px);
+    }
+
+    .writer-box h3 {
+      font-family: Orbitron, sans-serif;
+      font-size: clamp(2rem, 6vw, 3.6rem);
+      color: #c5b5ff;
+      margin: 12px 0;
+    }
+
+    .writer-box p {
+      max-width: 650px;
+      color: var(--muted);
+    }
+
+    .writer-mark {
+      display: inline-block;
+      color: #c5b5ff;
+      border: 1px solid #9c7bff55;
+      background: #9c7bff12;
+      border-radius: 7px;
+      padding: 5px 10px;
+      font-size: .78rem;
+      letter-spacing: 2px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      color: var(--muted);
+      font-size: .82rem;
+      text-align: center;
+    }
+
+    footer strong {
+      color: var(--cyan);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .7s, transform .7s;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 760px) {
+      .menu-toggle { display: block; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 76px;
+        left: 0;
+        right: 0;
+        padding: 22px 5%;
+        background: #0a1120;
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+      }
+
+      .nav-links.open { display: flex; }
+
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding-top: 65px;
+        padding-bottom: 45px;
+      }
+
+      .profile-visual {
+        min-height: 340px;
+        grid-row: 1;
+      }
+
+      .avatar { width: 190px; }
+      .avatar-symbol { font-size: 3.3rem; }
+      .orbit { width: 275px; }
+
+      h1 {
+        font-size: clamp(2.5rem, 11vw, 4rem);
+        letter-spacing: -1.5px;
+      }
+
+      section { padding: 60px 0; }
+      .grid { grid-template-columns: 1fr; }
+      .card { padding: 23px; }
+      .tag-one { right: 1%; top: 30px; }
+      .tag-two { left: 0; bottom: 28px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="container">
+      <a href="#home" class="logo">MK<span>HAEL</span></a>
+
+      <button class="menu-toggle" id="menuToggle"
+        aria-label="Buka menu" aria-expanded="false">☰</button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Beranda</a>
+        <a href="#biodata">Biodata</a>
+        <a href="#organisasi">Organisasi</a>
+        <a href="#prestasi">Prestasi</a>
+        <a href="#penulis">Penulis</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="container hero" id="home">
+      <div class="hero-content">
+        <div class="eyebrow">Personal Portfolio</div>
+
+        <h1>
+          FAIZ MALIK
+          <span>AKBAR.</span>
+        </h1>
+
+        <p>
+          Seorang siswa SMK yang aktif dalam organisasi Polisi Taruna,
+          memiliki pengalaman dalam pasukan pengibar bendera, serta
+          menekuni dunia literasi sebagai penulis cerita pendek dan novel
+          dengan nama pena CLOVE Fma.
+        </p>
+
+        <div class="actions">
+          <a href="#biodata" class="btn btn-primary">
+            Kenali Saya ↓
+          </a>
+          <a href="https://www.wattpad.com/user/CLOVEfma"
+             target="_blank" rel="noopener noreferrer"
+             class="btn btn-secondary">
+            Wattpad ↗
+          </a>
+        </div>
+      </div>
+
+      <div class="profile-visual">
+        <div class="orbit"></div>
+
+        <div class="avatar">
+          <div class="avatar-inner">
+            <div class="avatar-symbol">FM</div>
+            <small>MKHAEL</small>
+          </div>
+        </div>
+
+        <div class="float-tag tag-one">✦ Student Leader</div>
+        <div class="float-tag tag-two">✍ CLOVE Fma</div>
+      </div>
+    </section>
+
+    <section class="container" id="biodata">
+      <div class="section-head reveal">
+        <div class="label">01 / Tentang Saya</div>
+        <h2>Biodata Pribadi</h2>
+        <p>
+          Informasi singkat mengenai pendidikan, kegiatan, dan minat saya.
+        </p>
+      </div>
+
+      <div class="grid">
+        <article class="card reveal">
+          <div class="card-icon">👤</div>
+          <h3>Profil Singkat</h3>
+          <p>
+            Saya adalah seorang pelajar yang berusaha mengembangkan
+            kemampuan kepemimpinan, kedisiplinan, kreativitas, dan
+            keterampilan menulis melalui kegiatan sekolah dan karya pribadi.
+          </p>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon">🎓</div>
+          <h3>Informasi Pendidikan</h3>
+          <div class="info-list">
+            <div class="info-row">
+              <span>Nama</span>
+              <span>Faiz Malik Akbar</span>
+            </div>
+            <div class="info-row">
+              <span>Sekolah</span>
+              <span>SMK Negeri 1 Giritontro</span>
+            </div>
+            <div class="info-row">
+              <span>Jurusan</span>
+              <span>TJKT</span>
+            </div>
+            <div class="info-row">
+              <span>Organisasi</span>
+              <span>Polisi Taruna</span>
+            </div>
+            <div class="info-row">
+              <span>Nama pena</span>
+              <span>CLOVE Fma</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="container" id="organisasi">
+      <div class="section-head reveal">
+        <div class="label">02 / Kepemimpinan</div>
+        <h2>Organisasi Polisi Taruna</h2>
+        <p>
+          Berorganisasi menjadi salah satu cara saya belajar bertanggung
+          jawab, menjaga kedisiplinan, dan bekerja sama dengan orang lain.
+        </p>
+      </div>
+
+      <article class="card reveal">
+        <div class="card-icon">🛡️</div>
+        <h3>Kepala Polisi Taruna</h3>
+        <p>
+          Saya menjabat sebagai Kepala Polisi Taruna di SMK Negeri 1
+          Giritontro. Dalam peran ini, saya berupaya menjalankan amanah,
+          memberi teladan, serta ikut menjaga ketertiban dan kedisiplinan
+          di lingkungan sekolah.
+        </p>
+      </article>
+    </section>
+
+    <section class="container" id="prestasi">
+      <div class="section-head reveal">
+        <div class="label">03 / Pengalaman</div>
+        <h2>Pengalaman Paskibra</h2>
+        <p>
+          Dua pengalaman berharga dalam upacara peringatan Hari Ulang Tahun
+          Republik Indonesia di tingkat Kecamatan Giritontro.
+        </p>
+      </div>
+
+      <div class="grid">
+        <article class="card achievement reveal">
+          <div class="year">HUT KE-80 RI</div>
+          <div class="card-icon">🇮🇩</div>
+          <h3>Pasukan 17</h3>
+          <p>
+            Berpartisipasi sebagai anggota Pasukan 17 dalam upacara
+            peringatan HUT ke-80 Republik Indonesia di Kecamatan Giritontro.
+            Pengalaman ini menjadi bagian berharga dalam perjalanan saya
+            untuk belajar tentang disiplin dan tanggung jawab.
+          </p>
+        </article>
+
+        <article class="card achievement reveal">
+          <div class="year">HUT KE-81 RI</div>
+          <div class="card-icon">🚩</div>
+          <h3>Penggerek Bendera</h3>
+          <p>
+            Kembali mendapat kesempatan bertugas dalam upacara HUT ke-81
+            Republik Indonesia sebagai penggerek Bendera Merah Putih
+            di Kecamatan Giritontro.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="container" id="penulis">
+      <div class="section-head reveal">
+        <div class="label">04 / Dunia Literasi</div>
+        <h2>Di Balik Nama Pena</h2>
+      </div>
+
+      <div class="writer-box reveal">
+        <span class="writer-mark">AUTHOR PORTFOLIO</span>
+        <h3>CLOVE Fma</h3>
+        <p>
+          Selain aktif sebagai pelajar dan organisator, saya juga menulis
+          cerita pendek serta novel. Melalui tulisan, saya membangun dunia,
+          menghadirkan karakter, dan merangkai cerita yang ingin saya bagikan
+          kepada para pembaca.
+        </p>
+
+        <div class="actions">
+          <a href="https://www.wattpad.com/user/CLOVEfma"
+             class="btn btn-primary"
+             target="_blank" rel="noopener noreferrer">
+            Baca Karya Saya di Wattpad ↗
+          </a>
+          <a href="#home" class="btn btn-secondary">
+            Kembali ke Atas ↑
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> <strong>MKHAEL</strong> ·
+      Personal Portfolio · Built with purpose.
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.textContent = isOpen ? "✕" : "☰";
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+      });
+    });
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach(element => {
+      observer.observe(element);
+    });
+  </script>
+</body>
+</html>
